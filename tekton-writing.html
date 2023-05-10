@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tekton Writing</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.cont {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+.fontTable {
+    border-collapse: collapse;
+    border-spacing: 0;
+    empty-cells: show;
+    border: 1px solid #cbcbcb;
+    margin-top: 1.5em;
+    width: 100%
+}
+
+.fontTable thead {
+    background-color: #e0e0e0;
+    color: #000;
+    vertical-align: bottom;
+}
+
+.fontTable td, .fontTable th {
+    padding: 2px;
+    margin: 0;
+}
+
+.fontTable caption {
+    position: relative;
+    font-size: 1.6em;
+    font-weight: bold;
+    background-color: #e0e0e0;
+    color: #000;
+    vertical-align: bottom;
+    border: 1px solid #cbcbcb;
+    border-bottom: 0 none;
+    user-select: none;
+}
+
+.keyboard button {
+    font-size: 1em;
+}
+
+#keyboard-type {
+    position: absolute;
+    right: 1em;
+    top: 0.25em;
+    font-size: 0.7em;
+    color: #0074CC;
+    text-decoration: underline;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.show-ipa .ipa {
+    display: inline-block;
+}
+.show-ipa .phonetic {
+    display: none;
+}
+
+.show-phonetic .ipa {
+    display: none;
+}
+.show-phonetic .phonetic {
+    display: inline-block;
+}
+
+.fontTable th {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+.fontTable td {
+    text-align: center;
+}
+
+.fontTable td.aleft {
+    text-align: left;
+}
+
+.punctuationCont div, .punctuation {
+    width : 26.4px;
+    height:  51px;
+    background-size: 100%;
+    display: inline-block;
+}
+
+.letterCont div, .letter {
+    width : 51px;
+    height: 51px;
+    background-size: 100%;
+    display: inline-block;
+}
+
+.v1 { background-image: url('TektonFont/vowel-1.png'); }
+.v2 { background-image: url('TektonFont/vowel-2.png'); }
+.v3 { background-image: url('TektonFont/vowel-3.png'); }
+.v4 { background-image: url('TektonFont/vowel-4.png'); }
+.v5 { background-image: url('TektonFont/vowel-5.png'); }
+.v6 { background-image: url('TektonFont/vowel-6.png'); }
+.v7 { background-image: url('TektonFont/vowel-7.png'); }
+.v8 { background-image: url('TektonFont/vowel-8.png'); }
+.v9 { background-image: url('TektonFont/vowel-9.png'); }
+.v10 { background-image: url('TektonFont/vowel-10.png'); }
+.v11 { background-image: url('TektonFont/vowel-11.png'); }
+.v12 { background-image: url('TektonFont/vowel-12.png'); }
+.v13 { background-image: url('TektonFont/vowel-13.png'); }
+.v14 { background-image: url('TektonFont/vowel-14.png'); }
+.v15 { background-image: url('TektonFont/vowel-15.png'); }
+.v16 { background-image: url('TektonFont/vowel-16.png'); }
+.v17 { background-image: url('TektonFont/vowel-17.png'); }
+.v18 { background-image: url('TektonFont/vowel-18.png'); }
+.v19 { background-image: url('TektonFont/vowel-19.png'); }
+.v20 { background-image: url('TektonFont/vowel-20.png'); }
+.v21 { background-image: url('TektonFont/vowel-21.png'); }
+
+.c1 { background-image: url('TektonFont/consonant-1.png'); }
+.c2 { background-image: url('TektonFont/consonant-2.png'); }
+.c3 { background-image: url('TektonFont/consonant-3.png'); }
+.c4 { background-image: url('TektonFont/consonant-4.png'); }
+.c5 { background-image: url('TektonFont/consonant-5.png'); }
+.c6 { background-image: url('TektonFont/consonant-6.png'); }
+.c7 { background-image: url('TektonFont/consonant-7.png'); }
+.c8 { background-image: url('TektonFont/consonant-8.png'); }
+.c9 { background-image: url('TektonFont/consonant-9.png'); }
+.c10 { background-image: url('TektonFont/consonant-10.png'); }
+.c11 { background-image: url('TektonFont/consonant-11.png'); }
+.c12 { background-image: url('TektonFont/consonant-12.png'); }
+.c13 { background-image: url('TektonFont/consonant-13.png'); }
+.c14 { background-image: url('TektonFont/consonant-14.png'); }
+.c15 { background-image: url('TektonFont/consonant-15.png'); }
+.c16 { background-image: url('TektonFont/consonant-16.png'); }
+.c17 { background-image: url('TektonFont/consonant-17.png'); }
+.c18 { background-image: url('TektonFont/consonant-18.png'); }
+.c19 { background-image: url('TektonFont/consonant-19.png'); }
+.c20 { background-image: url('TektonFont/consonant-20.png'); }
+.c21 { background-image: url('TektonFont/consonant-21.png'); }
+.c22 { background-image: url('TektonFont/consonant-22.png'); }
+.c23 { background-image: url('TektonFont/consonant-23.png'); }
+.c24 { background-image: url('TektonFont/consonant-24.png'); }
+.c25 { background-image: url('TektonFont/consonant-25.png'); }
+.c26 { background-image: url('TektonFont/consonant-26.png'); }
+
+.n0 { background-image: url('TektonFont/number-0.png');  }
+.n1 { background-image: url('TektonFont/number-1.png');  }
+.n2 { background-image: url('TektonFont/number-2.png');  }
+.n3 { background-image: url('TektonFont/number-3.png');  }
+.n4 { background-image: url('TektonFont/number-4.png');  }
+.n5 { background-image: url('TektonFont/number-5.png');  }
+.n6 { background-image: url('TektonFont/number-6.png');  }
+.n7 { background-image: url('TektonFont/number-7.png');  }
+
+.p1 { background-image: url('TektonFont/punctuation-1.png');  }
+.p2 { background-image: url('TektonFont/punctuation-2.png');  }
+.p3 { background-image: url('TektonFont/punctuation-3.png');  }
+.p4 { background-image: url('TektonFont/punctuation-4.png');  }
+.p5 { background-image: url('TektonFont/punctuation-5.png');  }
+.p6 { background-image: url('TektonFont/punctuation-6.png');  }
+.p7 { background-image: url('TektonFont/punctuation-7.png');  }
+.p8 { background-image: url('TektonFont/punctuation-8.png');  }
+.p9 { background-image: url('TektonFont/punctuation-9.png');  }
+.p10 { background-image: url('TektonFont/punctuation-10.png');  }
+.p11 { background-image: url('TektonFont/punctuation-11.png');  }
+.p12 { background-image: url('TektonFont/punctuation-12.png');  }
+.p13 { background-image: url('TektonFont/punctuation-13.png');  }
+.p14 { background-image: url('TektonFont/punctuation-14.png');  }
+.p15 { background-image: url('TektonFont/punctuation-15.png');  }
+.p16 { background-image: url('TektonFont/punctuation-16.png');  }
+.p17 { background-image: url('TektonFont/punctuation-17.png');  }
+.p18 { background-image: url('TektonFont/punctuation-18.png');  }
+.p19 { background-image: url('TektonFont/punctuation-19.png');  }
+.p20 { background-image: url('TektonFont/punctuation-20.png');  }
+.p21 { background-image: url('TektonFont/punctuation-21.png');  }
+.p22 { background-image: url('TektonFont/punctuation-22.png');  }
+.p23 { background-image: url('TektonFont/punctuation-23.png');  }
+.p24 { background-image: url('TektonFont/punctuation-24.png');  }
+.p25 { background-image: url('TektonFont/punctuation-25.png');  }
+.p26 { background-image: url('TektonFont/punctuation-26.png');  }
+.p27 { background-image: url('TektonFont/punctuation-27.png');  }
+.p28 { background-image: url('TektonFont/punctuation-28.png');  }
+.p29 { background-image: url('TektonFont/punctuation-29.png');  }
+.p30 { background-image: url('TektonFont/punctuation-30.png');  }
+.p31 { background-image: url('TektonFont/punctuation-31.png');  }
+.p32 { background-image: url('TektonFont/punctuation-32.png');  }
+
+.s {}
+
+.selected {
+    background-color: #aae2e6;
+}
+
+#blinker {
+    display: inline-block;
+    width: 5px;
+    height: 51px;
+    padding: 0.2em;  
+    text-align: center;
+    line-height: 51px;
+    border-left: 3px solid #000000;
+    margin-left: 5px;
+    color: #000000;
+    animation: blink 2s linear infinite;
+}
+
+@keyframes blink {
+    0% { opacity: 0; }
+    50%  { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.line{
+    margin: 1em;
+}
+
+#codedWriting {
+    position: relative;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: stretch;
+    padding: 1em;
+}
+
+#input-coded {
+    width: 1%;
+    flex: 1 1 auto;
+    position: relative;
+    display: block;
+    box-sizing: border-box;
+    min-width: 0;
+}
+
+#btn-coded {
+    display: flex;
+    box-sizing: border-box;
+    margin-left: 0.2em;
+}
+
+.fontTable.keyboard td {
+    padding: 0.2em;
+}
+
+/* Tooltip container */
+.fontTable button {
+  position: relative;
+  display: inline-block;
+  padding: 0;
+}
+
+.tipbottom, .tipright, .tiptop, .tipnone {
+  position: relative;
+  display: block;
+  padding: 1px 6px;
+}
+
+/* Bottom Tooltip text */
+.tiptop .tip, .tipbottom .tip {
+  visibility: hidden;
+  width: 160px;
+  background-color: #99D8F3;
+  color: #000000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  left: 50%;
+  margin-left: -80px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+
+.tiptop .tip {
+  bottom: 150%;
+}
+
+.tipbottom .tip {
+    top: 150%;
+}
+
+/* Right Tooltip text */
+.tipright .tip {
+  visibility: hidden;
+  width: 160px;
+  background-color: #99D8F3;
+  color: #000000;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  top: -5px;
+  left: 100%;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tiptop:hover .tip, .tipbottom:hover .tip, .tipright:hover .tip {
+  visibility: visible;
+}
+
+/* top arrow */
+.tipbottom .tip::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #99D8F3 transparent;
+}
+
+/* left arrow  */
+.tipright .tip::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent #99D8F3 transparent transparent;
+}
+
+/* bottom arrow  */
+.tiptop .tip::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #99D8F3 transparent transparent transparent;
+}
+
+.tiptop .tip, .tipbottom .tip,  .tipright .tip {
+  opacity: 0;
+  transition: opacity 0.75s;
+}
+
+.tiptop:hover .tip, .tipbottom:hover .tip, .tipright:hover .tip {
+  opacity: 1;
+}
+
+footer {
+    margin: 2em 0 0 0;
+    background-color: #333333;
+    color: #eeeeee;
+    padding: 1em 2em;
+}
+
+</style>
+
+<script type="text/javascript">
+
+let outputLines = [];
+
+const selected = {
+    consonant : null,
+    consonantEl : null,
+    consonantLetter : null,
+    vowel : null,
+    vowelEl : null,
+    vowelLetter : null
+};
+
+let blinker = null;
+
+function $(id){
+    return document.getElementById(id);
+}
+
+function observe(el, evt, handler){
+    el.addEventListener(evt, handler);
+}
+
+function init(){
+    let click = 'click';
+
+    blinker = $('blinker');
+
+    // syllables
+    observe($('btn-c-1'), click, writeSyllable.bind(null, 'c', 1));
+    observe($('btn-c-2'), click, writeSyllable.bind(null, 'c', 2));
+    observe($('btn-c-3'), click, writeSyllable.bind(null, 'c', 3));
+    observe($('btn-c-4'), click, writeSyllable.bind(null, 'c', 4));
+    observe($('btn-c-5'), click, writeSyllable.bind(null, 'c', 5));
+    observe($('btn-c-6'), click, writeSyllable.bind(null, 'c', 6));
+    observe($('btn-c-7'), click, writeSyllable.bind(null, 'c', 7));
+    observe($('btn-c-8'), click, writeSyllable.bind(null, 'c', 8));
+    observe($('btn-c-9'), click, writeSyllable.bind(null, 'c', 9));
+    observe($('btn-c-10'), click, writeSyllable.bind(null, 'c', 10));
+    observe($('btn-c-11'), click, writeSyllable.bind(null, 'c', 11));
+    observe($('btn-c-12'), click, writeSyllable.bind(null, 'c', 12));
+    observe($('btn-c-13'), click, writeSyllable.bind(null, 'c', 13));
+    observe($('btn-c-14'), click, writeSyllable.bind(null, 'c', 14));
+    observe($('btn-c-15'), click, writeSyllable.bind(null, 'c', 15));
+    observe($('btn-c-16'), click, writeSyllable.bind(null, 'c', 16));
+    observe($('btn-c-17'), click, writeSyllable.bind(null, 'c', 17));
+    observe($('btn-c-18'), click, writeSyllable.bind(null, 'c', 18));
+    observe($('btn-c-19'), click, writeSyllable.bind(null, 'c', 19));
+    observe($('btn-c-20'), click, writeSyllable.bind(null, 'c', 20));
+    observe($('btn-c-21'), click, writeSyllable.bind(null, 'c', 21));
+    observe($('btn-c-22'), click, writeSyllable.bind(null, 'c', 22));
+    observe($('btn-c-23'), click, writeSyllable.bind(null, 'c', 23));
+    observe($('btn-c-24'), click, writeSyllable.bind(null, 'c', 24));
+    observe($('btn-c-25'), click, writeSyllable.bind(null, 'c', 25));
+    observe($('btn-c-26'), click, writeSyllable.bind(null, 'c', 26));
+
+    // vowels
+    observe($('btn-v-1'), click, writeSyllable.bind(null, 'v', 1));
+    observe($('btn-v-2'), click, writeSyllable.bind(null, 'v', 2));
+    observe($('btn-v-3'), click, writeSyllable.bind(null, 'v', 3));
+    observe($('btn-v-4'), click, writeSyllable.bind(null, 'v', 4));
+    observe($('btn-v-5'), click, writeSyllable.bind(null, 'v', 5));
+    observe($('btn-v-6'), click, writeSyllable.bind(null, 'v', 6));
+    observe($('btn-v-7'), click, writeSyllable.bind(null, 'v', 7));
+    observe($('btn-v-8'), click, writeSyllable.bind(null, 'v', 8));
+    observe($('btn-v-9'), click, writeSyllable.bind(null, 'v', 9));
+    observe($('btn-v-10'), click, writeSyllable.bind(null, 'v', 10));
+    observe($('btn-v-11'), click, writeSyllable.bind(null, 'v', 11));
+    observe($('btn-v-12'), click, writeSyllable.bind(null, 'v', 12));
+    observe($('btn-v-13'), click, writeSyllable.bind(null, 'v', 13));
+    observe($('btn-v-14'), click, writeSyllable.bind(null, 'v', 14));
+    observe($('btn-v-15'), click, writeSyllable.bind(null, 'v', 15));
+    observe($('btn-v-16'), click, writeSyllable.bind(null, 'v', 16));
+    observe($('btn-v-17'), click, writeSyllable.bind(null, 'v', 17));
+    observe($('btn-v-18'), click, writeSyllable.bind(null, 'v', 18));
+    observe($('btn-v-19'), click, writeSyllable.bind(null, 'v', 19));
+    observe($('btn-v-20'), click, writeSyllable.bind(null, 'v', 20));
+    observe($('btn-v-21'), click, writeSyllable.bind(null, 'v', 21));
+
+    // numbers
+    observe($('btn-n-0'), click, writeLetter.bind(null, 'n', 0));
+    observe($('btn-n-1'), click, writeLetter.bind(null, 'n', 1));
+    observe($('btn-n-2'), click, writeLetter.bind(null, 'n', 2));
+    observe($('btn-n-3'), click, writeLetter.bind(null, 'n', 3));
+    observe($('btn-n-4'), click, writeLetter.bind(null, 'n', 4));
+    observe($('btn-n-5'), click, writeLetter.bind(null, 'n', 5));
+    observe($('btn-n-6'), click, writeLetter.bind(null, 'n', 6));
+    observe($('btn-n-7'), click, writeLetter.bind(null, 'n', 7));
+
+    // punctuation
+    observe($('btn-p-1'), click, writeLetter.bind(null, 'p', 1));
+    observe($('btn-p-2'), click, writeLetter.bind(null, 'p', 2));
+    observe($('btn-p-3'), click, writeLetter.bind(null, 'p', 3));
+    observe($('btn-p-4'), click, writeLetter.bind(null, 'p', 4));
+    observe($('btn-p-5'), click, writeLetter.bind(null, 'p', 5));
+    observe($('btn-p-6'), click, writeLetter.bind(null, 'p', 6));
+    observe($('btn-p-7'), click, writeLetter.bind(null, 'p', 7));
+    observe($('btn-p-8'), click, writeLetter.bind(null, 'p', 8));
+    observe($('btn-p-9'), click, writeLetter.bind(null, 'p', 9));
+    observe($('btn-p-10'), click, writeLetter.bind(null, 'p', 10));
+    observe($('btn-p-11'), click, writeLetter.bind(null, 'p', 11));
+    observe($('btn-p-12'), click, writeLetter.bind(null, 'p', 12));
+    observe($('btn-p-13'), click, writeLetter.bind(null, 'p', 13));
+    observe($('btn-p-14'), click, writeLetter.bind(null, 'p', 14));
+    observe($('btn-p-15'), click, writeLetter.bind(null, 'p', 15));
+    observe($('btn-p-16'), click, writeLetter.bind(null, 'p', 16));
+    observe($('btn-p-17'), click, writeLetter.bind(null, 'p', 17));
+    observe($('btn-p-18'), click, writeLetter.bind(null, 'p', 18));
+    observe($('btn-p-19'), click, writeLetter.bind(null, 'p', 19));
+    observe($('btn-p-20'), click, writeLetter.bind(null, 'p', 20));
+    observe($('btn-p-21'), click, writeLetter.bind(null, 'p', 21));
+    observe($('btn-p-22'), click, writeLetter.bind(null, 'p', 22));
+    observe($('btn-p-23'), click, writeLetter.bind(null, 'p', 23));
+    observe($('btn-p-24'), click, writeLetter.bind(null, 'p', 24));
+    observe($('btn-p-25'), click, writeLetter.bind(null, 'p', 25));
+    observe($('btn-p-26'), click, writeLetter.bind(null, 'p', 26));
+    observe($('btn-p-27'), click, writeLetter.bind(null, 'p', 27));
+    observe($('btn-p-28'), click, writeLetter.bind(null, 'p', 28));
+    observe($('btn-p-29'), click, writeLetter.bind(null, 'p', 29));
+    observe($('btn-p-30'), click, writeLetter.bind(null, 'p', 30));
+    observe($('btn-p-31'), click, writeLetter.bind(null, 'p', 31));
+    observe($('btn-p-32'), click, writeLetter.bind(null, 'p', 32));
+
+    // functions
+    observe($('btn-space'), click, writeLetter.bind(null, 's', 0));
+    observe($('btn-backspace'), click, backspace);
+    observe($('btn-enter'), click, enter);
+    observe($('btn-clear'), click, clear);
+
+    observe($('btn-coded'), click, insertCodedWriting);
+
+    observe($('keyboard-type'), click, keyboardType);
+
+    let config = JSON.parse(localStorage.getItem('config') || '{}');
+    if (config.keyboardType === 'Phonetic'){
+        keyboardType();
+    }
+}
+
+function writeSyllable(type, val){
+    // clicked consonant
+    if (type === 'c'){
+        // if another consonant is already selected - unselect it
+        if (selected.consonant){
+            selected.consonantEl.className = '';
+        }
+
+        // select the clicked consonant
+        selected.consonantEl = $('btn-c-' + val);
+        selected.consonantEl.className = 'selected';
+        selected.consonant = val;
+
+        if (selected.vowel){
+            insertSyllable();
+        }
+    }
+    // clicked vowel
+    else {
+        // if another vowel is already selected - unselect it
+        if (selected.vowel){
+            selected.vowelEl.className = '';
+        }
+
+        // select the clicked vowel
+        selected.vowelEl = $('btn-v-' + val);
+        selected.vowelEl.className = 'selected';
+        selected.vowel = val;
+
+        if (selected.consonant){
+            insertSyllable();
+        }
+    }
+}
+
+function insertSyllable(){
+    if (!selected.consonant || !selected.vowel) return;
+
+    let letter = document.createElement('div');
+    letter.className = 'letter v' + selected.vowel;
+
+    let consonant = document.createElement('div');
+    consonant.className = 'letter c' + selected.consonant;
+    letter.appendChild(consonant);
+
+    let line;
+    if (outputLines.length){
+        line = outputLines[outputLines.length - 1];
+    } else {
+        line = document.querySelectorAll('.line')[0];
+        outputLines.push(line);
+    }
+    line.insertBefore(letter, blinker);
+
+    $('input-coded').value += 'c-' + selected.consonant + '~v-' + selected.vowel + '~';
+
+    selected.consonantEl.className = '';
+    selected.vowelEl.className = '';
+
+    selected.consonant = null;
+    selected.consonantEl = null;
+    selected.vowel = null;
+    selected.vowelEl = null;
+}
+
+function writeLetter(type, index){
+    let line;
+    if (outputLines.length){
+        line = outputLines[outputLines.length - 1];
+    } else {
+        line = document.querySelectorAll('.line')[0];
+        outputLines.push(line);
+    }
+
+    let letter = document.createElement('div');
+    line.insertBefore(letter, blinker);
+    letter.className = (type === 'p' ? 'punctuation ' : 'letter ') + type + index;
+
+    $('input-coded').value += type + '-' + index + '~';
+}
+
+function backspace(){
+    if (!outputLines.length) return;
+
+    let line = outputLines[outputLines.length - 1];
+    let els = line.querySelectorAll('div.letter, div.punctuation');
+    let letters = [];
+
+    for (let i=0; i<els.length; i++){
+        if (els[i].className.indexOf(' c') === -1) letters.push(els[i]);
+    }
+
+    if (letters.length){
+        line.removeChild(letters[letters.length - 1]);
+    } else if (outputLines.length > 1) {
+        line = outputLines[outputLines.length - 2];
+        line.appendChild(blinker);
+        $('tektonWritingDisplay').removeChild(outputLines.pop());
+    }
+
+    let arr = $('input-coded').value.split('~');
+    if (arr.length){
+        arr.pop(); // last item is always empty string
+        let symbol = arr.pop(); // remove last symbol
+        if (symbol && symbol.indexOf('v-') !== -1) arr.pop(); // if removed vowel - remove also the consonant that precedes it
+        $('input-coded').value = arr.length ? arr.join('~') + '~' : '';
+    }
+}
+
+function enter(){
+    let line = document.createElement('div');
+    line.className = 'line';
+    $('tektonWritingDisplay').appendChild(line);
+    line.appendChild(blinker);
+    outputLines.push(line);
+
+    $('input-coded').value += 'e-' + '~';
+}
+
+function clear(){
+    $('tektonWritingDisplay').innerHTML = '<div class="line"><div id="blinker"></div></div>';
+    outputLines = [];
+    blinker = $('blinker');
+
+    $('input-coded').value = '';
+}
+
+function insertCodedWriting(){
+    let arr = $('input-coded').value.split('~');
+    clear();
+    if (!arr.length) return;
+
+    for (let item of arr){
+        if (item.indexOf('s-') !== -1){
+            $('btn-space').click();
+        } else if (item.indexOf('e-') !== -1){
+            $('btn-enter').click();
+        } else if (item){
+            $('btn-' + item).click();
+        }
+    }
+}
+
+function keyboardType(){
+    let el = $('keyboard-type');
+    let cont = $('cont');
+
+    let config = JSON.parse(localStorage.getItem('config') || '{}');
+
+    if (el.textContent === 'IPA'){
+        el.textContent = 'Phonetic';
+        cont.className = 'cont show-phonetic';
+        config.keyboardType = 'Phonetic';
+    } else {
+        el.textContent = 'IPA';        
+        cont.className = 'cont show-ipa';
+        config.keyboardType = 'IPA';
+    }
+
+    localStorage.setItem('config', JSON.stringify(config));
+}
+
+window.onload = init;
+
+</script>
+
+</head>
+
+<body>
+
+<div id="cont" class="cont show-ipa">
+
+    <div><h1>Tekton Writing</h1></div>
+
+    <div>
+        <a href="https://www.dictionary.com/">Dictionary.com</a> | 
+        <a href="https://www.dictionary.com/e/key-to-ipa-pronunciations/">Key to IPA Pronunciations</a>
+    </div>
+
+    <table border="1" id="keyboard-table" class="fontTable keyboard">
+        <caption>
+            Simple Keyboard
+            <span id="keyboard-type">IPA</span>
+        </caption>
+        <tbody>
+            <tr>
+                <td>Consonant</td>
+                <td class="aleft">
+                    <button id="btn-c-1"><span class="tiptop"><span class="ipa">n</span><span class="phonetic">n</span><span class="tip">no, dinner, thin</span></span></button>
+                    <button id="btn-c-2"><span class="tiptop"><span class="ipa">t</span><span class="phonetic">t</span><span class="tip">top, better, cat</span></span></button>
+                    <button id="btn-c-3"><span class="tiptop"><span class="ipa">r</span><span class="phonetic">r</span><span class="tip">run, marry, far, store</span></span></button>
+                    <button id="btn-c-4"><span class="tiptop"><span class="ipa">s</span><span class="phonetic">s</span><span class="tip">sit, city, passing, face</span></span></button>
+                    <button id="btn-c-5"><span class="tiptop"><span class="ipa">l</span><span class="phonetic">l</span><span class="tip">let, follow, still</span></span></button>
+                    <button id="btn-c-6"><span class="tiptop"><span class="ipa">ð</span><span class="phonetic">th</span><span class="tip">this, mother, breathe</span></span></button>
+                    <button id="btn-c-7"><span class="tiptop"><span class="ipa">d</span><span class="phonetic">d</span><span class="tip">do, ladder, bed</span></span></button>
+                    <button id="btn-c-8"><span class="tiptop"><span class="ipa">k</span><span class="phonetic">k</span><span class="tip">can, speaker, stick</span></span></button>
+                    <button id="btn-c-9"><span class="tiptop"><span class="ipa">m</span><span class="phonetic">m</span><span class="tip">make, summer, time</span></span></button>
+                    <button id="btn-c-10"><span class="tiptop"><span class="ipa">z</span><span class="phonetic">z</span><span class="tip">zoo, easy, buzz</span></span></button>
+                    <button id="btn-c-11"><span class="tiptop"><span class="ipa">v</span><span class="phonetic">v</span><span class="tip">very, seven, love</span></span></button>
+                    <button id="btn-c-12"><span class="tiptop"><span class="ipa">p</span><span class="phonetic">p</span><span class="tip">put, apple, cup</span></span></button>
+                    <button id="btn-c-13"><span class="tiptop"><span class="ipa">w</span><span class="phonetic">w</span><span class="tip">wear, away</span></span></button>
+                    <button id="btn-c-14"><span class="tiptop"><span class="ipa">b</span><span class="phonetic">b</span><span class="tip">boy, baby, rob</span></span></button>
+                    <button id="btn-c-15"><span class="tiptop"><span class="ipa">f</span><span class="phonetic">f</span><span class="tip">food, offer, safe</span></span></button>
+                    <button id="btn-c-16"><span class="tiptop"><span class="ipa">y</span><span class="phonetic">y</span><span class="tip">yes, onion</span></span></button>
+                    <button id="btn-c-17"><span class="tiptop"><span class="ipa">g</span><span class="phonetic">g</span><span class="tip">get, bigger, dog</span></span></button>
+                    <button id="btn-c-18"><span class="tiptop"><span class="ipa">h</span><span class="phonetic">h</span><span class="tip">happy, ahead</span></span></button>
+                    <button id="btn-c-19"><span class="tiptop"><span class="ipa">ʃ</span><span class="phonetic">sh</span><span class="tip">she, station, push</span></span></button>
+                    <button id="btn-c-20"><span class="tiptop"><span class="ipa">ŋ</span><span class="phonetic">ng</span><span class="tip">singer, think, long</span></span></button>
+                    <button id="btn-c-21"><span class="tiptop"><span class="ipa">tʃ</span><span class="phonetic">ch</span><span class="tip">church, watching, nature, witch</span></span></button>
+                    <button id="btn-c-22"><span class="tiptop"><span class="ipa">dʒ</span><span class="phonetic">j</span><span class="tip">jump, budget, age</span></span></button>
+                    <button id="btn-c-23"><span class="tiptop"><span class="ipa">θ</span><span class="phonetic">th</span><span class="tip">thirsty, nothing, math</span></span></button>
+                    <button id="btn-c-24"><span class="tiptop"><span class="ipa">ʰw</span><span class="phonetic">hw</span><span class="tip">where, somewhat</span></span></button>
+                    <button id="btn-c-25"><span class="tiptop"><span class="ipa">ʒ</span><span class="phonetic">zh</span><span class="tip">measure, television, beige</span></span></button>
+                    <button id="btn-c-26"><span class="tipnone">-none-</span></button>
+                </td>
+            </tr>
+            <tr>
+                <td>Vowel</td>
+                <td class="aleft">
+                    <button id="btn-v-1"><span class="tipbottom"><span class="ipa">ə</span><span class="phonetic">uh</span><span class="tip">about, animal, problem, circus</span></span></button>
+                    <button id="btn-v-2"><span class="tipbottom"><span class="ipa">ɪ</span><span class="phonetic">i</span><span class="tip">it, big, finishes</span></span></button>
+                    <button id="btn-v-3"><span class="tipbottom"><span class="ipa">i</span><span class="phonetic">ee</span><span class="tip">eat, see, need</span></span></button>
+                    <button id="btn-v-4"><span class="tipbottom"><span class="ipa">ɛ</span><span class="phonetic">e</span><span class="tip">ever, head, get</span></span></button>
+                    <button id="btn-v-5"><span class="tipbottom"><span class="ipa">æ</span><span class="phonetic">a</span><span class="tip">apple, can, hat</span></span></button>
+                    <button id="btn-v-6"><span class="tipbottom"><span class="ipa">u</span><span class="phonetic">oo</span><span class="tip">ooze, food, soup, sue</span></span></button>
+                    <button id="btn-v-7"><span class="tipbottom"><span class="ipa">eɪ</span><span class="phonetic">ey</span><span class="tip">aid, hate, day</span></span></button>
+                    <button id="btn-v-8"><span class="tipbottom"><span class="ipa">ʌ</span><span class="phonetic">uh</span><span class="tip">up, mother, mud</span></span></button>
+                    <button id="btn-v-9"><span class="tipbottom"><span class="ipa">aɪ</span><span class="phonetic">ahy</span><span class="tip">I, ice, hide, deny</span></span></button>
+                    <button id="btn-v-10"><span class="tipbottom"><span class="ipa">ɑ</span><span class="phonetic">ah</span><span class="tip">arm, father, aha</span></span></button>
+                    <button id="btn-v-11"><span class="tipbottom"><span class="ipa">oʊ</span><span class="phonetic">oh</span><span class="tip">owe, road, below</span></span></button>
+                    <button id="btn-v-12"><span class="tipbottom"><span class="ipa">ɒ</span><span class="phonetic">o</span><span class="tip">odd, hot, waffle</span></span></button>
+                    <button id="btn-v-13"><span class="tipbottom"><span class="ipa">aʊ</span><span class="phonetic">ou</span><span class="tip">out, loud, how</span></span></button>
+                    <button id="btn-v-14"><span class="tipbottom"><span class="ipa">ʊ</span><span class="phonetic italic">oo</span><span class="tip">good, book, put</span></span></button>
+                    <button id="btn-v-15"><span class="tipbottom"><span class="ipa">ɔɪ</span><span class="phonetic">oi</span><span class="tip">oil, choice, toy</span></span></button>
+                    <button id="btn-v-16"><span class="tipbottom"><span class="ipa">ɔ</span><span class="phonetic">aw</span><span class="tip">all, or, talk, lost, saw</span></span></button>
+                    <button id="btn-v-17"><span class="tipbottom"><span class="ipa">ɛər</span><span class="phonetic">air</span><span class="tip">air, careful, wear</span></span></button>
+                    <button id="btn-v-18"><span class="tipbottom"><span class="ipa">ər</span><span class="phonetic">er</span><span class="tip">teacher, afterward, murderer</span></span></button>
+                    <button id="btn-v-19"><span class="tipbottom"><span class="ipa">ɜr</span><span class="phonetic">ur</span><span class="tip">early, bird, stirring</span></span></button>
+                    <button id="btn-v-20"><span class="tipbottom"><span class="ipa">ɪər</span><span class="phonetic">eer</span><span class="tip">ear, hero, beer</span></span></button>
+                    <button id="btn-v-21"><span class="tipnone">-none-</span></button>
+                </td>
+            </tr>
+            <tr>
+                <td>Number</td>
+                <td class="aleft">
+                    <button id="btn-n-0"><span class="tipnone">0</span></button>
+                    <button id="btn-n-1"><span class="tipnone">1</span></button>
+                    <button id="btn-n-2"><span class="tipnone">2</span></button>
+                    <button id="btn-n-3"><span class="tipnone">3</span></button>
+                    <button id="btn-n-4"><span class="tipnone">4</span></button>
+                    <button id="btn-n-5"><span class="tipnone">5</span></button>
+                    <button id="btn-n-6"><span class="tipnone">6</span></button>
+                    <button id="btn-n-7"><span class="tipnone">7</span></button>
+                </td>
+            </tr>
+            <tr>
+                <td>Punctuation</td>
+                <td class="aleft">
+                    <button id="btn-p-1"><span class="tipbottom">!<span class="tip">Exclamation Mark</span></span></button>
+                    <button id="btn-p-2"><span class="tipbottom">?<span class="tip">Question Mark</span></span></button>
+                    <button id="btn-p-3"><span class="tipbottom">"<span class="tip">Double Quote</span></span></button>
+                    <button id="btn-p-4"><span class="tipbottom">'<span class="tip">Single Quote</span></span></button>
+                    <button id="btn-p-5"><span class="tipbottom">-<span class="tip">Hyphen</span></span></button>
+                    <button id="btn-p-6"><span class="tipbottom">_<span class="tip">Underscore</span></span></button>
+                    <button id="btn-p-7"><span class="tipbottom">/<span class="tip">Slash</span></span></button>
+                    <button id="btn-p-8"><span class="tipbottom">\<span class="tip">Backslash</span></span></button>
+                    <button id="btn-p-9"><span class="tipbottom">&<span class="tip">Ampersand</span></span></button>
+                    <button id="btn-p-10"><span class="tipbottom">;<span class="tip">Semicolon</span></span></button>
+                    <button id="btn-p-11"><span class="tipbottom">:<span class="tip">Colon</span></span></button>
+                    <button id="btn-p-12"><span class="tipbottom">=<span class="tip">Equal</span></span></button>
+                    <button id="btn-p-13"><span class="tipbottom">,<span class="tip">Comma</span></span></button>
+                    <button id="btn-p-14"><span class="tipbottom">|<span class="tip">Pipe</span></span></button>
+                    <button id="btn-p-15"><span class="tipbottom">(<span class="tip">Left Paren</span></span></button>
+                    <button id="btn-p-16"><span class="tipbottom">)<span class="tip">Right Paren</span></span></button>
+                    <button id="btn-p-17"><span class="tipbottom">.<span class="tip">Dot</span></span></button>
+                    <button id="btn-p-18"><span class="tipbottom">%<span class="tip">Percent</span></span></button>
+                    <button id="btn-p-19"><span class="tipbottom">$<span class="tip">Currency</span></span></button>
+                    <button id="btn-p-20"><span class="tipbottom">[<span class="tip">Left Bracket</span></span></button>
+                    <button id="btn-p-21"><span class="tipbottom">]<span class="tip">Right Bracket</span></span></button>
+                    <button id="btn-p-22"><span class="tipbottom">+<span class="tip">Plus</span></span></button>
+                    <button id="btn-p-23"><span class="tipbottom">-<span class="tip">Minus</span></span></button>
+                    <button id="btn-p-24"><span class="tipbottom">^<span class="tip">Power</span></span></button>
+                    <button id="btn-p-25"><span class="tipbottom">√<span class="tip">Root</span></span></button>
+                    <button id="btn-p-26"><span class="tipbottom">*<span class="tip">Multiplication</span></span></button>
+                    <button id="btn-p-27"><span class="tipbottom">/<span class="tip">Division</span></span></button>
+                    <button id="btn-p-28"><span class="tipbottom">#<span class="tip">Hash</span></span></button>
+                    <button id="btn-p-29"><span class="tipbottom">*<span class="tip">Asterisk</span></span></button>
+                    <button id="btn-p-30"><span class="tipbottom">&lt;<span class="tip">Less Then</span></span></button>
+                    <button id="btn-p-31"><span class="tipbottom">&gt;<span class="tip">Greater Then</span></span></button>
+                    <button id="btn-p-32"><span class="tipbottom">@<span class="tip">At</span></span></button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table border="1" class="fontTable">
+        <caption>Tekton Writing Display</caption>
+        <tbody>
+            <tr>
+                <td class="aleft">
+                    <div id="tektonWritingDisplay">
+                        <div class="line">
+                            <div id="blinker"></div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <button id="btn-space">Space</button>
+                    <button id="btn-backspace">Backspace</button>
+                    <button id="btn-enter">Enter</button>
+                    <button id="btn-clear">Clear</button>
+                </td>
+            </tr>
+            <tr>
+                <td class="aleft">
+                    <div id="codedWriting">
+                        <input type="text" id="input-coded">
+                        <button id="btn-coded">Insert Coded Writing</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+<!-- ==================== VOWELS ==================== -->
+<table border="1" id="vowels-table" class="fontTable letterCont">
+    <caption>Vowels</caption>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+        </tr>
+        <tr>
+            <td><span class="tiptop"><span class="ipa">ə</span><span class="phonetic">uh</span><span class="tip">about, animal, problem, circus</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɪ</span><span class="phonetic">i</span><span class="tip">it, big, finishes</span></span></td>
+            <td><span class="tiptop"><span class="ipa">i</span><span class="phonetic">ee</span><span class="tip">eat, see, need</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɛ</span><span class="phonetic">e</span><span class="tip">ever, head, get</span></span></td>
+            <td><span class="tiptop"><span class="ipa">æ</span><span class="phonetic">a</span><span class="tip">apple, can, hat</span></span></td>
+            <td><span class="tiptop"><span class="ipa">u</span><span class="phonetic">oo</span><span class="tip">ooze, food, soup, sue</span></span></td>
+            <td><span class="tiptop"><span class="ipa">eɪ</span><span class="phonetic">ey</span><span class="tip">aid, hate, day</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʌ</span><span class="phonetic">uh</span><span class="tip">up, mother, mud</span></span></td>
+            <td><span class="tiptop"><span class="ipa">aɪ</span><span class="phonetic">ahy</span><span class="tip">I, ice, hide, deny</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɑ</span><span class="phonetic">ah</span><span class="tip">arm, father, aha</span></span></td>
+            <td><span class="tiptop"><span class="ipa">oʊ</span><span class="phonetic">oh</span><span class="tip">owe, road, below</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɒ</span><span class="phonetic">o</span><span class="tip">odd, hot, waffle</span></span></td>
+            <td><span class="tiptop"><span class="ipa">aʊ</span><span class="phonetic">ou</span><span class="tip">out, loud, how</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʊ</span><span class="phonetic italic">oo</span><span class="tip">good, book, put</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɔɪ</span><span class="phonetic">oi</span><span class="tip">oil, choice, toy</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɔ</span><span class="phonetic">aw</span><span class="tip">all, or, talk, lost, saw</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɛər</span><span class="phonetic">air</span><span class="tip">air, careful, wear</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ər</span><span class="phonetic">er</span><span class="tip">teacher, afterward, murderer</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɜr</span><span class="phonetic">ur</span><span class="tip">early, bird, stirring</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɪər</span><span class="phonetic">eer</span><span class="tip">ear, hero, beer</span></span></td>
+            <td>-none-</td>
+        </tr>
+        <tr>
+            <td><div class="v1"></div></td>
+            <td><div class="v2"></div></td>
+            <td><div class="v3"></div></td>
+            <td><div class="v4"></div></td>
+            <td><div class="v5"></div></td>
+            <td><div class="v6"></div></td>
+            <td><div class="v7"></div></td>
+            <td><div class="v8"></div></td>
+            <td><div class="v9"></div></td>
+            <td><div class="v10"></div></td>
+            <td><div class="v11"></div></td>
+            <td><div class="v12"></div></td>
+            <td><div class="v13"></div></td>
+            <td><div class="v14"></div></td>
+            <td><div class="v15"></div></td>
+            <td><div class="v16"></div></td>
+            <td><div class="v17"></div></td>
+            <td><div class="v18"></div></td>
+            <td><div class="v19"></div></td>
+            <td><div class="v20"></div></td>
+            <td><div class="v21"></div></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ==================== CONSONANTS ==================== -->
+<table border="1" id="consonants-table" class="fontTable letterCont">
+    <caption>Consonants</caption>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td><span class="tiptop"><span class="ipa">n</span><span class="phonetic">n</span><span class="tip">no, dinner, thin</span></span></td>
+            <td><span class="tiptop"><span class="ipa">t</span><span class="phonetic">t</span><span class="tip">top, better, cat</span></span></td>
+            <td><span class="tiptop"><span class="ipa">r</span><span class="phonetic">r</span><span class="tip">run, marry, far, store</span></span></td>
+            <td><span class="tiptop"><span class="ipa">s</span><span class="phonetic">s</span><span class="tip">sit, city, passing, face</span></span></td>
+            <td><span class="tiptop"><span class="ipa">l</span><span class="phonetic">l</span><span class="tip">let, follow, still</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ð</span><span class="phonetic">th</span><span class="tip">this, mother, breathe</span></span></td>
+            <td><span class="tiptop"><span class="ipa">d</span><span class="phonetic">d</span><span class="tip">do, ladder, bed</span></span></td>
+            <td><span class="tiptop"><span class="ipa">k</span><span class="phonetic">k</span><span class="tip">can, speaker, stick</span></span></td>
+            <td><span class="tiptop"><span class="ipa">m</span><span class="phonetic">m</span><span class="tip">make, summer, time</span></span></td>
+            <td><span class="tiptop"><span class="ipa">z</span><span class="phonetic">z</span><span class="tip">zoo, easy, buzz</span></span></td>
+            <td><span class="tiptop"><span class="ipa">v</span><span class="phonetic">v</span><span class="tip">very, seven, love</span></span></td>
+            <td><span class="tiptop"><span class="ipa">p</span><span class="phonetic">p</span><span class="tip">put, apple, cup</span></span></td>
+            <td><span class="tiptop"><span class="ipa">w</span><span class="phonetic">w</span><span class="tip">wear, away</span></span></td>
+            <td><span class="tiptop"><span class="ipa">b</span><span class="phonetic">b</span><span class="tip">boy, baby, rob</span></span></td>
+            <td><span class="tiptop"><span class="ipa">f</span><span class="phonetic">f</span><span class="tip">food, offer, safe</span></span></td>
+            <td><span class="tiptop"><span class="ipa">y</span><span class="phonetic">y</span><span class="tip">yes, onion</span></span></td>
+        </tr>
+        <tr>
+            <td><div class="c1"></div></td>
+            <td><div class="c2"></div></td>
+            <td><div class="c3"></div></td>
+            <td><div class="c4"></div></td>
+            <td><div class="c5"></div></td>
+            <td><div class="c6"></div></td>
+            <td><div class="c7"></div></td>
+            <td><div class="c8"></div></td>
+            <td><div class="c9"></div></td>
+            <td><div class="c10"></div></td>
+            <td><div class="c11"></div></td>
+            <td><div class="c12"></div></td>
+            <td><div class="c13"></div></td>
+            <td><div class="c14"></div></td>
+            <td><div class="c15"></div></td>
+            <td><div class="c16"></div></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><span class="tiptop"><span class="ipa">g</span><span class="phonetic">g</span><span class="tip">get, bigger, dog</span></span></td>
+            <td><span class="tiptop"><span class="ipa">h</span><span class="phonetic">h</span><span class="tip">happy, ahead</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʃ</span><span class="phonetic">sh</span><span class="tip">she, station, push</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ŋ</span><span class="phonetic">ng</span><span class="tip">singer, think, long</span></span></td>
+            <td><span class="tiptop"><span class="ipa">tʃ</span><span class="phonetic">ch</span><span class="tip">church, watching, nature, witch</span></span></td>
+            <td><span class="tiptop"><span class="ipa">dʒ</span><span class="phonetic">j</span><span class="tip">jump, budget, age</span></span></td>
+            <td><span class="tiptop"><span class="ipa">θ</span><span class="phonetic">th</span><span class="tip">thirsty, nothing, math</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʰw</span><span class="phonetic">hw</span><span class="tip">where, somewhat</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʒ</span><span class="phonetic">zh</span><span class="tip">measure, television, beige</span></span></td>
+            <td>-none-</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><div class="c17"></div></td>
+            <td><div class="c18"></div></td>
+            <td><div class="c19"></div></td>
+            <td><div class="c20"></div></td>
+            <td><div class="c21"></div></td>
+            <td><div class="c22"></div></td>
+            <td><div class="c23"></div></td>
+            <td><div class="c24"></div></td>
+            <td><div class="c25"></div></td>
+            <td><div class="c26"></div></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ==================== NUMBERS ==================== -->
+<table border="1" class="fontTable letterCont">
+    <caption>Numbers</caption>
+    <tbody>
+        <tr>
+            <td>0</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>10</td>
+            <td>23</td>
+            <td>54</td>
+            <td>67</td>
+            <td>100</td>
+            <td>742</td>
+        </tr>
+        <tr>
+            <td><div class="n0"></div></td>
+            <td><div class="n1"></div></td>
+            <td><div class="n2"></div></td>
+            <td><div class="n3"></div></td>
+            <td><div class="n4"></div></td>
+            <td><div class="n5"></div></td>
+            <td><div class="n6"></div></td>
+            <td><div class="n7"></div></td>
+            <td><div class="n1"></div><div class="n0"></div></td>
+            <td><div class="n2"></div><div class="n3"></div></td>
+            <td><div class="n5"></div><div class="n4"></div></td>
+            <td><div class="n6"></div><div class="n7"></div></td>
+            <td><div class="n1"></div><div class="n0"></div><div class="n0"></div></td>
+            <td><div class="n7"></div><div class="n4"></div><div class="n2"></div></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ==================== PUNCTUATION ==================== -->
+<table border="1" class="fontTable punctuationCont">
+    <caption>Punctuation</caption>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td><span class="tiptop">!<span class="tip">Exclamation Mark</span></span></td>
+            <td><span class="tiptop">?<span class="tip">Question Mark</span></span></td>
+            <td><span class="tiptop">"<span class="tip">Double Quote</span></span></td>
+            <td><span class="tiptop">'<span class="tip">Single Quote</span></span></td>
+            <td><span class="tiptop">-<span class="tip">Hyphen</span></span></td>
+            <td><span class="tiptop">_<span class="tip">Underscore</span></span></td>
+            <td><span class="tiptop">/<span class="tip">Slash</span></span></td>
+            <td><span class="tiptop">\<span class="tip">Backslash</span></span></td>
+            <td><span class="tiptop">&<span class="tip">Ampersand</span></span></td>
+            <td><span class="tiptop">;<span class="tip">Semicolon</span></span></td>
+            <td><span class="tiptop">:<span class="tip">Colon</span></span></td>
+            <td><span class="tiptop">=<span class="tip">Equal</span></span></td>
+            <td><span class="tiptop">,<span class="tip">Comma</span></span></td>
+            <td><span class="tiptop">|<span class="tip">Pipe</span></span></td>
+            <td><span class="tiptop">(<span class="tip">Left Paren</span></span></td>
+            <td><span class="tiptop">)<span class="tip">Right Paren</span></span></td>
+        </tr>
+        <tr>
+            <td><div class="p1"></div></td>
+            <td><div class="p2"></div></td>
+            <td><div class="p3"></div></td>
+            <td><div class="p4"></div></td>
+            <td><div class="p5"></div></td>
+            <td><div class="p6"></div></td>
+            <td><div class="p7"></div></td>
+            <td><div class="p8"></div></td>
+            <td><div class="p9"></div></td>
+            <td><div class="p10"></div></td>
+            <td><div class="p11"></div></td>
+            <td><div class="p12"></div></td>
+            <td><div class="p13"></div></td>
+            <td><div class="p14"></div></td>
+            <td><div class="p15"></div></td>
+            <td><div class="p16"></div></td>
+        </tr>
+    </tbody>
+    <tbody>
+        <tr>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+            <td>22</td>
+            <td>23</td>
+            <td>24</td>
+            <td>25</td>
+            <td>26</td>
+            <td>27</td>
+            <td>28</td>
+            <td>29</td>
+            <td>30</td>
+            <td>31</td>
+            <td>32</td>
+        </tr>
+        <tr>
+            <td><span class="tiptop">.<span class="tip">Dot</span></span></td>
+            <td><span class="tiptop">%<span class="tip">Percent</span></span></td>
+            <td><span class="tiptop">$<span class="tip">Currency</span></span></td>
+            <td><span class="tiptop">[<span class="tip">Left Bracket</span></span></td>
+            <td><span class="tiptop">]<span class="tip">Right Bracket</span></span></td>
+            <td><span class="tiptop">+<span class="tip">Plus</span></span></td>
+            <td><span class="tiptop">-<span class="tip">Minus</span></span></td>
+            <td><span class="tiptop">^<span class="tip">Power</span></span></td>
+            <td><span class="tiptop">√<span class="tip">Root</span></span></td>
+            <td><span class="tiptop">*<span class="tip">Multiplication</span></span></td>
+            <td><span class="tiptop">/<span class="tip">Division</span></span></td>
+            <td><span class="tiptop">#<span class="tip">Hash</span></span></td>
+            <td><span class="tiptop">*<span class="tip">Asterisk</span></span></td>
+            <td><span class="tiptop">&lt;<span class="tip">Less Then</span></span></td>
+            <td><span class="tiptop">&gt;<span class="tip">Greater Then</span></span></td>
+            <td><span class="tiptop">@<span class="tip">At</span></span></td>
+        </tr>
+        <tr>
+            <td><div class="p17"></div></td>
+            <td><div class="p18"></div></td>
+            <td><div class="p19"></div></td>
+            <td><div class="p20"></div></td>
+            <td><div class="p21"></div></td>
+            <td><div class="p22"></div></td>
+            <td><div class="p23"></div></td>
+            <td><div class="p24"></div></td>
+            <td><div class="p25"></div></td>
+            <td><div class="p26"></div></td>
+            <td><div class="p27"></div></td>
+            <td><div class="p28"></div></td>
+            <td><div class="p29"></div></td>
+            <td><div class="p30"></div></td>
+            <td><div class="p31"></div></td>
+            <td><div class="p32"></div></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- ==================== SYLLABLES ==================== -->
+<table border="1" id="syllables-table" class="fontTable letterCont">
+    <caption>Syllables</caption>
+    <tbody>
+        <tr>
+            <td></td>
+            <td><span class="tiptop"><span class="ipa">ə</span><span class="phonetic">uh</span><span class="tip">about, animal, problem, circus</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɪ</span><span class="phonetic">i</span><span class="tip">it, big, finishes</span></span></td>
+            <td><span class="tiptop"><span class="ipa">i</span><span class="phonetic">ee</span><span class="tip">eat, see, need</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɛ</span><span class="phonetic">e</span><span class="tip">ever, head, get</span></span></td>
+            <td><span class="tiptop"><span class="ipa">æ</span><span class="phonetic">a</span><span class="tip">apple, can, hat</span></span></td>
+            <td><span class="tiptop"><span class="ipa">u</span><span class="phonetic">oo</span><span class="tip">ooze, food, soup, sue</span></span></td>
+            <td><span class="tiptop"><span class="ipa">eɪ</span><span class="phonetic">ey</span><span class="tip">aid, hate, day</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʌ</span><span class="phonetic">uh</span><span class="tip">up, mother, mud</span></span></td>
+            <td><span class="tiptop"><span class="ipa">aɪ</span><span class="phonetic">ahy</span><span class="tip">I, ice, hide, deny</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɑ</span><span class="phonetic">ah</span><span class="tip">arm, father, aha</span></span></td>
+            <td><span class="tiptop"><span class="ipa">oʊ</span><span class="phonetic">oh</span><span class="tip">owe, road, below</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɒ</span><span class="phonetic">o</span><span class="tip">odd, hot, waffle</span></span></td>
+            <td><span class="tiptop"><span class="ipa">aʊ</span><span class="phonetic">ou</span><span class="tip">out, loud, how</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʊ</span><span class="phonetic italic">oo</span><span class="tip">good, book, put</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɔɪ</span><span class="phonetic">oi</span><span class="tip">oil, choice, toy</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɔ</span><span class="phonetic">aw</span><span class="tip">all, or, talk, lost, saw</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɛər</span><span class="phonetic">air</span><span class="tip">air, careful, wear</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ər</span><span class="phonetic">er</span><span class="tip">teacher, afterward, murderer</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɜr</span><span class="phonetic">ur</span><span class="tip">early, bird, stirring</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɪər</span><span class="phonetic">eer</span><span class="tip">ear, hero, beer</span></span></td>
+            <td>-none-</td>
+        </tr>
+        <tr>
+            <td>#</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+        </tr>
+        <tr id="row-c-1">
+            <td><span class="tipright"><span class="ipa">n</span><span class="phonetic">n</span><span class="tip"><b>n</b>o, di<b>nn</b>er, thi<b>n</b></span></span></td>
+            <td><div class="v1"><div class="c1"></div></div></td>
+            <td><div class="v2"><div class="c1"></div></div></td>
+            <td><div class="v3"><div class="c1"></div></div></td>
+            <td><div class="v4"><div class="c1"></div></div></td>
+            <td><div class="v5"><div class="c1"></div></div></td>
+            <td><div class="v6"><div class="c1"></div></div></td>
+            <td><div class="v7"><div class="c1"></div></div></td>
+            <td><div class="v8"><div class="c1"></div></div></td>
+            <td><div class="v9"><div class="c1"></div></div></td>
+            <td><div class="v10"><div class="c1"></div></div></td>
+            <td><div class="v11"><div class="c1"></div></div></td>
+            <td><div class="v12"><div class="c1"></div></div></td>
+            <td><div class="v13"><div class="c1"></div></div></td>
+            <td><div class="v14"><div class="c1"></div></div></td>
+            <td><div class="v15"><div class="c1"></div></div></td>
+            <td><div class="v16"><div class="c1"></div></div></td>
+            <td><div class="v17"><div class="c1"></div></div></td>
+            <td><div class="v18"><div class="c1"></div></div></td>
+            <td><div class="v19"><div class="c1"></div></div></td>
+            <td><div class="v20"><div class="c1"></div></div></td>
+            <td><div class="v21"><div class="c1"></div></div></td>
+        </tr>
+        <tr id="row-c-2">
+            <td><span class="tipright">t<span class="ipa"></span><span class="phonetic">t</span><span class="tip"><b>t</b>op, be<b>tt</b>er, ca<b>t</b></span></span></td>
+            <td><div class="v1"><div class="c2"></div></div></td>
+            <td><div class="v2"><div class="c2"></div></div></td>
+            <td><div class="v3"><div class="c2"></div></div></td>
+            <td><div class="v4"><div class="c2"></div></div></td>
+            <td><div class="v5"><div class="c2"></div></div></td>
+            <td><div class="v6"><div class="c2"></div></div></td>
+            <td><div class="v7"><div class="c2"></div></div></td>
+            <td><div class="v8"><div class="c2"></div></div></td>
+            <td><div class="v9"><div class="c2"></div></div></td>
+            <td><div class="v10"><div class="c2"></div></div></td>
+            <td><div class="v11"><div class="c2"></div></div></td>
+            <td><div class="v12"><div class="c2"></div></div></td>
+            <td><div class="v13"><div class="c2"></div></div></td>
+            <td><div class="v14"><div class="c2"></div></div></td>
+            <td><div class="v15"><div class="c2"></div></div></td>
+            <td><div class="v16"><div class="c2"></div></div></td>
+            <td><div class="v17"><div class="c2"></div></div></td>
+            <td><div class="v18"><div class="c2"></div></div></td>
+            <td><div class="v19"><div class="c2"></div></div></td>
+            <td><div class="v20"><div class="c2"></div></div></td>
+            <td><div class="v21"><div class="c2"></div></div></td>
+        </tr>
+        <tr id="row-c-3">
+            <td><span class="tipright"><span class="ipa">r</span><span class="phonetic">r</span><span class="tip"><b>r</b>un, ma<b>rr</b>y, fa<b>r</b>, sto<b>r</b>e</span></span></td>
+            <td><div class="v1"><div class="c3"></div></div></td>
+            <td><div class="v2"><div class="c3"></div></div></td>
+            <td><div class="v3"><div class="c3"></div></div></td>
+            <td><div class="v4"><div class="c3"></div></div></td>
+            <td><div class="v5"><div class="c3"></div></div></td>
+            <td><div class="v6"><div class="c3"></div></div></td>
+            <td><div class="v7"><div class="c3"></div></div></td>
+            <td><div class="v8"><div class="c3"></div></div></td>
+            <td><div class="v9"><div class="c3"></div></div></td>
+            <td><div class="v10"><div class="c3"></div></div></td>
+            <td><div class="v11"><div class="c3"></div></div></td>
+            <td><div class="v12"><div class="c3"></div></div></td>
+            <td><div class="v13"><div class="c3"></div></div></td>
+            <td><div class="v14"><div class="c3"></div></div></td>
+            <td><div class="v15"><div class="c3"></div></div></td>
+            <td><div class="v16"><div class="c3"></div></div></td>
+            <td><div class="v17"><div class="c3"></div></div></td>
+            <td><div class="v18"><div class="c3"></div></div></td>
+            <td><div class="v19"><div class="c3"></div></div></td>
+            <td><div class="v20"><div class="c3"></div></div></td>
+            <td><div class="v21"><div class="c3"></div></div></td>
+        </tr>
+        <tr id="row-c-4">
+            <td><span class="tipright"><span class="ipa">s</span><span class="phonetic">s</span><span class="tip"><b>s</b>it, <b>c</b>ity, pa<b>ss</b>ing, fa<b>c</b>e</span></span></td>
+            <td><div class="v1"><div class="c4"></div></div></td>
+            <td><div class="v2"><div class="c4"></div></div></td>
+            <td><div class="v3"><div class="c4"></div></div></td>
+            <td><div class="v4"><div class="c4"></div></div></td>
+            <td><div class="v5"><div class="c4"></div></div></td>
+            <td><div class="v6"><div class="c4"></div></div></td>
+            <td><div class="v7"><div class="c4"></div></div></td>
+            <td><div class="v8"><div class="c4"></div></div></td>
+            <td><div class="v9"><div class="c4"></div></div></td>
+            <td><div class="v10"><div class="c4"></div></div></td>
+            <td><div class="v11"><div class="c4"></div></div></td>
+            <td><div class="v12"><div class="c4"></div></div></td>
+            <td><div class="v13"><div class="c4"></div></div></td>
+            <td><div class="v14"><div class="c4"></div></div></td>
+            <td><div class="v15"><div class="c4"></div></div></td>
+            <td><div class="v16"><div class="c4"></div></div></td>
+            <td><div class="v17"><div class="c4"></div></div></td>
+            <td><div class="v18"><div class="c4"></div></div></td>
+            <td><div class="v19"><div class="c4"></div></div></td>
+            <td><div class="v20"><div class="c4"></div></div></td>
+            <td><div class="v21"><div class="c4"></div></div></td>
+        </tr>
+        <tr id="row-c-5">
+            <td><span class="tipright"><span class="ipa">l</span><span class="phonetic">l</span><span class="tip"><b>l</b>et, fo<b>ll</b>ow, sti<b>ll</b></span></span></td>
+            <td><div class="v1"><div class="c5"></div></div></td>
+            <td><div class="v2"><div class="c5"></div></div></td>
+            <td><div class="v3"><div class="c5"></div></div></td>
+            <td><div class="v4"><div class="c5"></div></div></td>
+            <td><div class="v5"><div class="c5"></div></div></td>
+            <td><div class="v6"><div class="c5"></div></div></td>
+            <td><div class="v7"><div class="c5"></div></div></td>
+            <td><div class="v8"><div class="c5"></div></div></td>
+            <td><div class="v9"><div class="c5"></div></div></td>
+            <td><div class="v10"><div class="c5"></div></div></td>
+            <td><div class="v11"><div class="c5"></div></div></td>
+            <td><div class="v12"><div class="c5"></div></div></td>
+            <td><div class="v13"><div class="c5"></div></div></td>
+            <td><div class="v14"><div class="c5"></div></div></td>
+            <td><div class="v15"><div class="c5"></div></div></td>
+            <td><div class="v16"><div class="c5"></div></div></td>
+            <td><div class="v17"><div class="c5"></div></div></td>
+            <td><div class="v18"><div class="c5"></div></div></td>
+            <td><div class="v19"><div class="c5"></div></div></td>
+            <td><div class="v20"><div class="c5"></div></div></td>
+            <td><div class="v21"><div class="c5"></div></div></td>
+        </tr>
+        <tr id="row-c-6">
+            <td><span class="tipright"><span class="ipa">ð</span><span class="phonetic">th</span><span class="tip"><b>th</b>is, mo<b>th</b>er, brea<b>th</b>e</span></span></td>
+            <td><div class="v1"><div class="c6"></div></div></td>
+            <td><div class="v2"><div class="c6"></div></div></td>
+            <td><div class="v3"><div class="c6"></div></div></td>
+            <td><div class="v4"><div class="c6"></div></div></td>
+            <td><div class="v5"><div class="c6"></div></div></td>
+            <td><div class="v6"><div class="c6"></div></div></td>
+            <td><div class="v7"><div class="c6"></div></div></td>
+            <td><div class="v8"><div class="c6"></div></div></td>
+            <td><div class="v9"><div class="c6"></div></div></td>
+            <td><div class="v10"><div class="c6"></div></div></td>
+            <td><div class="v11"><div class="c6"></div></div></td>
+            <td><div class="v12"><div class="c6"></div></div></td>
+            <td><div class="v13"><div class="c6"></div></div></td>
+            <td><div class="v14"><div class="c6"></div></div></td>
+            <td><div class="v15"><div class="c6"></div></div></td>
+            <td><div class="v16"><div class="c6"></div></div></td>
+            <td><div class="v17"><div class="c6"></div></div></td>
+            <td><div class="v18"><div class="c6"></div></div></td>
+            <td><div class="v19"><div class="c6"></div></div></td>
+            <td><div class="v20"><div class="c6"></div></div></td>
+            <td><div class="v21"><div class="c6"></div></div></td>
+        </tr>
+        <tr id="row-c-7">
+            <td><span class="tipright"><span class="ipa">d</span><span class="phonetic">d</span><span class="tip"><b>d</b>o, la<b>dd</b>er, be<b>d</b></span></span></td>
+            <td><div class="v1"><div class="c7"></div></div></td>
+            <td><div class="v2"><div class="c7"></div></div></td>
+            <td><div class="v3"><div class="c7"></div></div></td>
+            <td><div class="v4"><div class="c7"></div></div></td>
+            <td><div class="v5"><div class="c7"></div></div></td>
+            <td><div class="v6"><div class="c7"></div></div></td>
+            <td><div class="v7"><div class="c7"></div></div></td>
+            <td><div class="v8"><div class="c7"></div></div></td>
+            <td><div class="v9"><div class="c7"></div></div></td>
+            <td><div class="v10"><div class="c7"></div></div></td>
+            <td><div class="v11"><div class="c7"></div></div></td>
+            <td><div class="v12"><div class="c7"></div></div></td>
+            <td><div class="v13"><div class="c7"></div></div></td>
+            <td><div class="v14"><div class="c7"></div></div></td>
+            <td><div class="v15"><div class="c7"></div></div></td>
+            <td><div class="v16"><div class="c7"></div></div></td>
+            <td><div class="v17"><div class="c7"></div></div></td>
+            <td><div class="v18"><div class="c7"></div></div></td>
+            <td><div class="v19"><div class="c7"></div></div></td>
+            <td><div class="v20"><div class="c7"></div></div></td>
+            <td><div class="v21"><div class="c7"></div></div></td>
+        </tr>
+        <tr id="row-c-8">
+            <td><span class="tipright"><span class="ipa">k</span><span class="phonetic">k</span><span class="tip"><b>c</b>an, spea<b>k</b>er, sti<b>ck</b></span></span></td>
+            <td><div class="v1"><div class="c8"></div></div></td>
+            <td><div class="v2"><div class="c8"></div></div></td>
+            <td><div class="v3"><div class="c8"></div></div></td>
+            <td><div class="v4"><div class="c8"></div></div></td>
+            <td><div class="v5"><div class="c8"></div></div></td>
+            <td><div class="v6"><div class="c8"></div></div></td>
+            <td><div class="v7"><div class="c8"></div></div></td>
+            <td><div class="v8"><div class="c8"></div></div></td>
+            <td><div class="v9"><div class="c8"></div></div></td>
+            <td><div class="v10"><div class="c8"></div></div></td>
+            <td><div class="v11"><div class="c8"></div></div></td>
+            <td><div class="v12"><div class="c8"></div></div></td>
+            <td><div class="v13"><div class="c8"></div></div></td>
+            <td><div class="v14"><div class="c8"></div></div></td>
+            <td><div class="v15"><div class="c8"></div></div></td>
+            <td><div class="v16"><div class="c8"></div></div></td>
+            <td><div class="v17"><div class="c8"></div></div></td>
+            <td><div class="v18"><div class="c8"></div></div></td>
+            <td><div class="v19"><div class="c8"></div></div></td>
+            <td><div class="v20"><div class="c8"></div></div></td>
+            <td><div class="v21"><div class="c8"></div></div></td>
+        </tr>
+        <tr id="row-c-9">
+            <td><span class="tipright"><span class="ipa">m</span><span class="phonetic">m</span><span class="tip"><b>m</b>ake, su<b>mm</b>er, ti<b>m</b>e</span></span></td>
+            <td><div class="v1"><div class="c9"></div></div></td>
+            <td><div class="v2"><div class="c9"></div></div></td>
+            <td><div class="v3"><div class="c9"></div></div></td>
+            <td><div class="v4"><div class="c9"></div></div></td>
+            <td><div class="v5"><div class="c9"></div></div></td>
+            <td><div class="v6"><div class="c9"></div></div></td>
+            <td><div class="v7"><div class="c9"></div></div></td>
+            <td><div class="v8"><div class="c9"></div></div></td>
+            <td><div class="v9"><div class="c9"></div></div></td>
+            <td><div class="v10"><div class="c9"></div></div></td>
+            <td><div class="v11"><div class="c9"></div></div></td>
+            <td><div class="v12"><div class="c9"></div></div></td>
+            <td><div class="v13"><div class="c9"></div></div></td>
+            <td><div class="v14"><div class="c9"></div></div></td>
+            <td><div class="v15"><div class="c9"></div></div></td>
+            <td><div class="v16"><div class="c9"></div></div></td>
+            <td><div class="v17"><div class="c9"></div></div></td>
+            <td><div class="v18"><div class="c9"></div></div></td>
+            <td><div class="v19"><div class="c9"></div></div></td>
+            <td><div class="v20"><div class="c9"></div></div></td>
+            <td><div class="v21"><div class="c9"></div></div></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><span class="tiptop"><span class="ipa">ə</span><span class="phonetic">uh</span><span class="tip">about, animal, problem, circus</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɪ</span><span class="phonetic">i</span><span class="tip">it, big, finishes</span></span></td>
+            <td><span class="tiptop"><span class="ipa">i</span><span class="phonetic">ee</span><span class="tip">eat, see, need</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɛ</span><span class="phonetic">e</span><span class="tip">ever, head, get</span></span></td>
+            <td><span class="tiptop"><span class="ipa">æ</span><span class="phonetic">a</span><span class="tip">apple, can, hat</span></span></td>
+            <td><span class="tiptop"><span class="ipa">u</span><span class="phonetic">oo</span><span class="tip">ooze, food, soup, sue</span></span></td>
+            <td><span class="tiptop"><span class="ipa">eɪ</span><span class="phonetic">ey</span><span class="tip">aid, hate, day</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʌ</span><span class="phonetic">uh</span><span class="tip">up, mother, mud</span></span></td>
+            <td><span class="tiptop"><span class="ipa">aɪ</span><span class="phonetic">ahy</span><span class="tip">I, ice, hide, deny</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɑ</span><span class="phonetic">ah</span><span class="tip">arm, father, aha</span></span></td>
+            <td><span class="tiptop"><span class="ipa">oʊ</span><span class="phonetic">oh</span><span class="tip">owe, road, below</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɒ</span><span class="phonetic">o</span><span class="tip">odd, hot, waffle</span></span></td>
+            <td><span class="tiptop"><span class="ipa">aʊ</span><span class="phonetic">ou</span><span class="tip">out, loud, how</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʊ</span><span class="phonetic italic">oo</span><span class="tip">good, book, put</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɔɪ</span><span class="phonetic">oi</span><span class="tip">oil, choice, toy</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɔ</span><span class="phonetic">aw</span><span class="tip">all, or, talk, lost, saw</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɛər</span><span class="phonetic">air</span><span class="tip">air, careful, wear</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ər</span><span class="phonetic">er</span><span class="tip">teacher, afterward, murderer</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɜr</span><span class="phonetic">ur</span><span class="tip">early, bird, stirring</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɪər</span><span class="phonetic">eer</span><span class="tip">ear, hero, beer</span></span></td>
+            <td>-none-</td>
+        </tr>
+        <tr>
+            <td>#</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+        </tr>
+        <tr id="row-c-10">
+            <td><span class="tipright"><span class="ipa">z</span><span class="phonetic">z</span><span class="tip"><b>z</b>oo, ea<b>s</b>y, bu<b>zz</b></span></span></td>
+            <td><div class="v1"><div class="c10"></div></div></td>
+            <td><div class="v2"><div class="c10"></div></div></td>
+            <td><div class="v3"><div class="c10"></div></div></td>
+            <td><div class="v4"><div class="c10"></div></div></td>
+            <td><div class="v5"><div class="c10"></div></div></td>
+            <td><div class="v6"><div class="c10"></div></div></td>
+            <td><div class="v7"><div class="c10"></div></div></td>
+            <td><div class="v8"><div class="c10"></div></div></td>
+            <td><div class="v9"><div class="c10"></div></div></td>
+            <td><div class="v10"><div class="c10"></div></div></td>
+            <td><div class="v11"><div class="c10"></div></div></td>
+            <td><div class="v12"><div class="c10"></div></div></td>
+            <td><div class="v13"><div class="c10"></div></div></td>
+            <td><div class="v14"><div class="c10"></div></div></td>
+            <td><div class="v15"><div class="c10"></div></div></td>
+            <td><div class="v16"><div class="c10"></div></div></td>
+            <td><div class="v17"><div class="c10"></div></div></td>
+            <td><div class="v18"><div class="c10"></div></div></td>
+            <td><div class="v19"><div class="c10"></div></div></td>
+            <td><div class="v20"><div class="c10"></div></div></td>
+            <td><div class="v21"><div class="c10"></div></div></td>
+        </tr>
+        <tr id="row-c-11">
+            <td><span class="tipright"><span class="ipa">v</span><span class="phonetic">v</span><span class="tip"><b>v</b>ery, se<b>v</b>en, lo<b>v</b>e</span></span></td>
+            <td><div class="v1"><div class="c11"></div></div></td>
+            <td><div class="v2"><div class="c11"></div></div></td>
+            <td><div class="v3"><div class="c11"></div></div></td>
+            <td><div class="v4"><div class="c11"></div></div></td>
+            <td><div class="v5"><div class="c11"></div></div></td>
+            <td><div class="v6"><div class="c11"></div></div></td>
+            <td><div class="v7"><div class="c11"></div></div></td>
+            <td><div class="v8"><div class="c11"></div></div></td>
+            <td><div class="v9"><div class="c11"></div></div></td>
+            <td><div class="v10"><div class="c11"></div></div></td>
+            <td><div class="v11"><div class="c11"></div></div></td>
+            <td><div class="v12"><div class="c11"></div></div></td>
+            <td><div class="v13"><div class="c11"></div></div></td>
+            <td><div class="v14"><div class="c11"></div></div></td>
+            <td><div class="v15"><div class="c11"></div></div></td>
+            <td><div class="v16"><div class="c11"></div></div></td>
+            <td><div class="v17"><div class="c11"></div></div></td>
+            <td><div class="v18"><div class="c11"></div></div></td>
+            <td><div class="v19"><div class="c11"></div></div></td>
+            <td><div class="v20"><div class="c11"></div></div></td>
+            <td><div class="v21"><div class="c11"></div></div></td>
+        </tr>
+        <tr id="row-c-12">
+            <td><span class="tipright"><span class="ipa">p</span><span class="phonetic">p</span><span class="tip"><b>p</b>ut, a<b>pp</b>le, cu<b>p</b></span></span></td>
+            <td><div class="v1"><div class="c12"></div></div></td>
+            <td><div class="v2"><div class="c12"></div></div></td>
+            <td><div class="v3"><div class="c12"></div></div></td>
+            <td><div class="v4"><div class="c12"></div></div></td>
+            <td><div class="v5"><div class="c12"></div></div></td>
+            <td><div class="v6"><div class="c12"></div></div></td>
+            <td><div class="v7"><div class="c12"></div></div></td>
+            <td><div class="v8"><div class="c12"></div></div></td>
+            <td><div class="v9"><div class="c12"></div></div></td>
+            <td><div class="v10"><div class="c12"></div></div></td>
+            <td><div class="v11"><div class="c12"></div></div></td>
+            <td><div class="v12"><div class="c12"></div></div></td>
+            <td><div class="v13"><div class="c12"></div></div></td>
+            <td><div class="v14"><div class="c12"></div></div></td>
+            <td><div class="v15"><div class="c12"></div></div></td>
+            <td><div class="v16"><div class="c12"></div></div></td>
+            <td><div class="v17"><div class="c12"></div></div></td>
+            <td><div class="v18"><div class="c12"></div></div></td>
+            <td><div class="v19"><div class="c12"></div></div></td>
+            <td><div class="v20"><div class="c12"></div></div></td>
+            <td><div class="v21"><div class="c12"></div></div></td>
+        </tr>
+        <tr id="row-c-13">
+            <td><span class="tipright"><span class="ipa">w</span><span class="phonetic">w</span><span class="tip"><b>w</b>ear, a<b>w</b>ay</span></span></td>
+            <td><div class="v1"><div class="c13"></div></div></td>
+            <td><div class="v2"><div class="c13"></div></div></td>
+            <td><div class="v3"><div class="c13"></div></div></td>
+            <td><div class="v4"><div class="c13"></div></div></td>
+            <td><div class="v5"><div class="c13"></div></div></td>
+            <td><div class="v6"><div class="c13"></div></div></td>
+            <td><div class="v7"><div class="c13"></div></div></td>
+            <td><div class="v8"><div class="c13"></div></div></td>
+            <td><div class="v9"><div class="c13"></div></div></td>
+            <td><div class="v10"><div class="c13"></div></div></td>
+            <td><div class="v11"><div class="c13"></div></div></td>
+            <td><div class="v12"><div class="c13"></div></div></td>
+            <td><div class="v13"><div class="c13"></div></div></td>
+            <td><div class="v14"><div class="c13"></div></div></td>
+            <td><div class="v15"><div class="c13"></div></div></td>
+            <td><div class="v16"><div class="c13"></div></div></td>
+            <td><div class="v17"><div class="c13"></div></div></td>
+            <td><div class="v18"><div class="c13"></div></div></td>
+            <td><div class="v19"><div class="c13"></div></div></td>
+            <td><div class="v20"><div class="c13"></div></div></td>
+            <td><div class="v21"><div class="c13"></div></div></td>
+        </tr>
+        <tr id="row-c-14">
+            <td><span class="tipright"><span class="ipa">b</span><span class="phonetic">b</span><span class="tip"><b>b</b>oy, <b>b</b>a<b>b</b>y, ro<b>b</b></span></span></td>
+            <td><div class="v1"><div class="c14"></div></div></td>
+            <td><div class="v2"><div class="c14"></div></div></td>
+            <td><div class="v3"><div class="c14"></div></div></td>
+            <td><div class="v4"><div class="c14"></div></div></td>
+            <td><div class="v5"><div class="c14"></div></div></td>
+            <td><div class="v6"><div class="c14"></div></div></td>
+            <td><div class="v7"><div class="c14"></div></div></td>
+            <td><div class="v8"><div class="c14"></div></div></td>
+            <td><div class="v9"><div class="c14"></div></div></td>
+            <td><div class="v10"><div class="c14"></div></div></td>
+            <td><div class="v11"><div class="c14"></div></div></td>
+            <td><div class="v12"><div class="c14"></div></div></td>
+            <td><div class="v13"><div class="c14"></div></div></td>
+            <td><div class="v14"><div class="c14"></div></div></td>
+            <td><div class="v15"><div class="c14"></div></div></td>
+            <td><div class="v16"><div class="c14"></div></div></td>
+            <td><div class="v17"><div class="c14"></div></div></td>
+            <td><div class="v18"><div class="c14"></div></div></td>
+            <td><div class="v19"><div class="c14"></div></div></td>
+            <td><div class="v20"><div class="c14"></div></div></td>
+            <td><div class="v21"><div class="c14"></div></div></td>
+        </tr>
+        <tr id="row-c-15">
+            <td><span class="tipright"><span class="ipa">f</span><span class="phonetic">f</span><span class="tip"><b>f</b>ood, o<b>ff</b>er, sa<b>f</b>e</span></span></td>
+            <td><div class="v1"><div class="c15"></div></div></td>
+            <td><div class="v2"><div class="c15"></div></div></td>
+            <td><div class="v3"><div class="c15"></div></div></td>
+            <td><div class="v4"><div class="c15"></div></div></td>
+            <td><div class="v5"><div class="c15"></div></div></td>
+            <td><div class="v6"><div class="c15"></div></div></td>
+            <td><div class="v7"><div class="c15"></div></div></td>
+            <td><div class="v8"><div class="c15"></div></div></td>
+            <td><div class="v9"><div class="c15"></div></div></td>
+            <td><div class="v10"><div class="c15"></div></div></td>
+            <td><div class="v11"><div class="c15"></div></div></td>
+            <td><div class="v12"><div class="c15"></div></div></td>
+            <td><div class="v13"><div class="c15"></div></div></td>
+            <td><div class="v14"><div class="c15"></div></div></td>
+            <td><div class="v15"><div class="c15"></div></div></td>
+            <td><div class="v16"><div class="c15"></div></div></td>
+            <td><div class="v17"><div class="c15"></div></div></td>
+            <td><div class="v18"><div class="c15"></div></div></td>
+            <td><div class="v19"><div class="c15"></div></div></td>
+            <td><div class="v20"><div class="c15"></div></div></td>
+            <td><div class="v21"><div class="c15"></div></div></td>
+        </tr>
+        <tr id="row-c-16">
+            <td><span class="tipright"><span class="ipa">y</span><span class="phonetic">y</span><span class="tip"><b>y</b>es, on<b>i</b>on</span></span></td>
+            <td><div class="v1"><div class="c16"></div></div></td>
+            <td><div class="v2"><div class="c16"></div></div></td>
+            <td><div class="v3"><div class="c16"></div></div></td>
+            <td><div class="v4"><div class="c16"></div></div></td>
+            <td><div class="v5"><div class="c16"></div></div></td>
+            <td><div class="v6"><div class="c16"></div></div></td>
+            <td><div class="v7"><div class="c16"></div></div></td>
+            <td><div class="v8"><div class="c16"></div></div></td>
+            <td><div class="v9"><div class="c16"></div></div></td>
+            <td><div class="v10"><div class="c16"></div></div></td>
+            <td><div class="v11"><div class="c16"></div></div></td>
+            <td><div class="v12"><div class="c16"></div></div></td>
+            <td><div class="v13"><div class="c16"></div></div></td>
+            <td><div class="v14"><div class="c16"></div></div></td>
+            <td><div class="v15"><div class="c16"></div></div></td>
+            <td><div class="v16"><div class="c16"></div></div></td>
+            <td><div class="v17"><div class="c16"></div></div></td>
+            <td><div class="v18"><div class="c16"></div></div></td>
+            <td><div class="v19"><div class="c16"></div></div></td>
+            <td><div class="v20"><div class="c16"></div></div></td>
+            <td><div class="v21"><div class="c16"></div></div></td>
+        </tr>
+        <tr id="row-c-17">
+            <td><span class="tipright"><span class="ipa">g</span><span class="phonetic">g</span><span class="tip"><b>g</b>et, bi<b>gg</b>er, do<b>g</b></span></span></td>
+            <td><div class="v1"><div class="c17"></div></div></td>
+            <td><div class="v2"><div class="c17"></div></div></td>
+            <td><div class="v3"><div class="c17"></div></div></td>
+            <td><div class="v4"><div class="c17"></div></div></td>
+            <td><div class="v5"><div class="c17"></div></div></td>
+            <td><div class="v6"><div class="c17"></div></div></td>
+            <td><div class="v7"><div class="c17"></div></div></td>
+            <td><div class="v8"><div class="c17"></div></div></td>
+            <td><div class="v9"><div class="c17"></div></div></td>
+            <td><div class="v10"><div class="c17"></div></div></td>
+            <td><div class="v11"><div class="c17"></div></div></td>
+            <td><div class="v12"><div class="c17"></div></div></td>
+            <td><div class="v13"><div class="c17"></div></div></td>
+            <td><div class="v14"><div class="c17"></div></div></td>
+            <td><div class="v15"><div class="c17"></div></div></td>
+            <td><div class="v16"><div class="c17"></div></div></td>
+            <td><div class="v17"><div class="c17"></div></div></td>
+            <td><div class="v18"><div class="c17"></div></div></td>
+            <td><div class="v19"><div class="c17"></div></div></td>
+            <td><div class="v20"><div class="c17"></div></div></td>
+            <td><div class="v21"><div class="c17"></div></div></td>
+        </tr>
+        <tr id="row-c-18">
+            <td><span class="tipright"><span class="ipa">h</span><span class="phonetic">h</span><span class="tip"><b>h</b>appy, a<b>h</b>ead</span></span></td>
+            <td><div class="v1"><div class="c18"></div></div></td>
+            <td><div class="v2"><div class="c18"></div></div></td>
+            <td><div class="v3"><div class="c18"></div></div></td>
+            <td><div class="v4"><div class="c18"></div></div></td>
+            <td><div class="v5"><div class="c18"></div></div></td>
+            <td><div class="v6"><div class="c18"></div></div></td>
+            <td><div class="v7"><div class="c18"></div></div></td>
+            <td><div class="v8"><div class="c18"></div></div></td>
+            <td><div class="v9"><div class="c18"></div></div></td>
+            <td><div class="v10"><div class="c18"></div></div></td>
+            <td><div class="v11"><div class="c18"></div></div></td>
+            <td><div class="v12"><div class="c18"></div></div></td>
+            <td><div class="v13"><div class="c18"></div></div></td>
+            <td><div class="v14"><div class="c18"></div></div></td>
+            <td><div class="v15"><div class="c18"></div></div></td>
+            <td><div class="v16"><div class="c18"></div></div></td>
+            <td><div class="v17"><div class="c18"></div></div></td>
+            <td><div class="v18"><div class="c18"></div></div></td>
+            <td><div class="v19"><div class="c18"></div></div></td>
+            <td><div class="v20"><div class="c18"></div></div></td>
+            <td><div class="v21"><div class="c18"></div></div></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><span class="tiptop"><span class="ipa">ə</span><span class="phonetic">uh</span><span class="tip">about, animal, problem, circus</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɪ</span><span class="phonetic">i</span><span class="tip">it, big, finishes</span></span></td>
+            <td><span class="tiptop"><span class="ipa">i</span><span class="phonetic">ee</span><span class="tip">eat, see, need</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɛ</span><span class="phonetic">e</span><span class="tip">ever, head, get</span></span></td>
+            <td><span class="tiptop"><span class="ipa">æ</span><span class="phonetic">a</span><span class="tip">apple, can, hat</span></span></td>
+            <td><span class="tiptop"><span class="ipa">u</span><span class="phonetic">oo</span><span class="tip">ooze, food, soup, sue</span></span></td>
+            <td><span class="tiptop"><span class="ipa">eɪ</span><span class="phonetic">ey</span><span class="tip">aid, hate, day</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʌ</span><span class="phonetic">uh</span><span class="tip">up, mother, mud</span></span></td>
+            <td><span class="tiptop"><span class="ipa">aɪ</span><span class="phonetic">ahy</span><span class="tip">I, ice, hide, deny</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɑ</span><span class="phonetic">ah</span><span class="tip">arm, father, aha</span></span></td>
+            <td><span class="tiptop"><span class="ipa">oʊ</span><span class="phonetic">oh</span><span class="tip">owe, road, below</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɒ</span><span class="phonetic">o</span><span class="tip">odd, hot, waffle</span></span></td>
+            <td><span class="tiptop"><span class="ipa">aʊ</span><span class="phonetic">ou</span><span class="tip">out, loud, how</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ʊ</span><span class="phonetic italic">oo</span><span class="tip">good, book, put</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɔɪ</span><span class="phonetic">oi</span><span class="tip">oil, choice, toy</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɔ</span><span class="phonetic">aw</span><span class="tip">all, or, talk, lost, saw</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɛər</span><span class="phonetic">air</span><span class="tip">air, careful, wear</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ər</span><span class="phonetic">er</span><span class="tip">teacher, afterward, murderer</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɜr</span><span class="phonetic">ur</span><span class="tip">early, bird, stirring</span></span></td>
+            <td><span class="tiptop"><span class="ipa">ɪər</span><span class="phonetic">eer</span><span class="tip">ear, hero, beer</span></span></td>
+            <td>-none-</td>
+        </tr>
+        <tr>
+            <td>#</td>
+            <td>1</td>
+            <td>2</td>
+            <td>3</td>
+            <td>4</td>
+            <td>5</td>
+            <td>6</td>
+            <td>7</td>
+            <td>8</td>
+            <td>9</td>
+            <td>10</td>
+            <td>11</td>
+            <td>12</td>
+            <td>13</td>
+            <td>14</td>
+            <td>15</td>
+            <td>16</td>
+            <td>17</td>
+            <td>18</td>
+            <td>19</td>
+            <td>20</td>
+            <td>21</td>
+        </tr>
+        <tr id="row-c-19">
+            <td><span class="tipright"><span class="ipa">ʃ</span><span class="phonetic">sh</span><span class="tip"><b>sh</b>e, sta<b>t</b>ion, pu<b>sh</b>b></span></span></td>
+            <td><div class="v1"><div class="c19"></div></div></td>
+            <td><div class="v2"><div class="c19"></div></div></td>
+            <td><div class="v3"><div class="c19"></div></div></td>
+            <td><div class="v4"><div class="c19"></div></div></td>
+            <td><div class="v5"><div class="c19"></div></div></td>
+            <td><div class="v6"><div class="c19"></div></div></td>
+            <td><div class="v7"><div class="c19"></div></div></td>
+            <td><div class="v8"><div class="c19"></div></div></td>
+            <td><div class="v9"><div class="c19"></div></div></td>
+            <td><div class="v10"><div class="c19"></div></div></td>
+            <td><div class="v11"><div class="c19"></div></div></td>
+            <td><div class="v12"><div class="c19"></div></div></td>
+            <td><div class="v13"><div class="c19"></div></div></td>
+            <td><div class="v14"><div class="c19"></div></div></td>
+            <td><div class="v15"><div class="c19"></div></div></td>
+            <td><div class="v16"><div class="c19"></div></div></td>
+            <td><div class="v17"><div class="c19"></div></div></td>
+            <td><div class="v18"><div class="c19"></div></div></td>
+            <td><div class="v19"><div class="c19"></div></div></td>
+            <td><div class="v20"><div class="c19"></div></div></td>
+            <td><div class="v21"><div class="c19"></div></div></td>
+        </tr>
+        <tr id="row-c-20">
+            <td><span class="tipright"><span class="ipa">ŋ</span><span class="phonetic">ng</span><span class="tip">si<b>ng</b>er, thi<b>n</b>k, lo<b>ng</b></span></span></td>
+            <td><div class="v1"><div class="c20"></div></div></td>
+            <td><div class="v2"><div class="c20"></div></div></td>
+            <td><div class="v3"><div class="c20"></div></div></td>
+            <td><div class="v4"><div class="c20"></div></div></td>
+            <td><div class="v5"><div class="c20"></div></div></td>
+            <td><div class="v6"><div class="c20"></div></div></td>
+            <td><div class="v7"><div class="c20"></div></div></td>
+            <td><div class="v8"><div class="c20"></div></div></td>
+            <td><div class="v9"><div class="c20"></div></div></td>
+            <td><div class="v10"><div class="c20"></div></div></td>
+            <td><div class="v11"><div class="c20"></div></div></td>
+            <td><div class="v12"><div class="c20"></div></div></td>
+            <td><div class="v13"><div class="c20"></div></div></td>
+            <td><div class="v14"><div class="c20"></div></div></td>
+            <td><div class="v15"><div class="c20"></div></div></td>
+            <td><div class="v16"><div class="c20"></div></div></td>
+            <td><div class="v17"><div class="c20"></div></div></td>
+            <td><div class="v18"><div class="c20"></div></div></td>
+            <td><div class="v19"><div class="c20"></div></div></td>
+            <td><div class="v20"><div class="c20"></div></div></td>
+            <td><div class="v21"><div class="c20"></div></div></td>
+        </tr>
+        <tr id="row-c-21">
+            <td><span class="tipright"><span class="ipa">tʃ</span><span class="phonetic">ch</span><span class="tip"><b>ch</b>ur<b>ch</b>, wa<b>tch</b>ing, na<b>t</b>ure, wi<b>tch</b></span></span></td>
+            <td><div class="v1"><div class="c21"></div></div></td>
+            <td><div class="v2"><div class="c21"></div></div></td>
+            <td><div class="v3"><div class="c21"></div></div></td>
+            <td><div class="v4"><div class="c21"></div></div></td>
+            <td><div class="v5"><div class="c21"></div></div></td>
+            <td><div class="v6"><div class="c21"></div></div></td>
+            <td><div class="v7"><div class="c21"></div></div></td>
+            <td><div class="v8"><div class="c21"></div></div></td>
+            <td><div class="v9"><div class="c21"></div></div></td>
+            <td><div class="v10"><div class="c21"></div></div></td>
+            <td><div class="v11"><div class="c21"></div></div></td>
+            <td><div class="v12"><div class="c21"></div></div></td>
+            <td><div class="v13"><div class="c21"></div></div></td>
+            <td><div class="v14"><div class="c21"></div></div></td>
+            <td><div class="v15"><div class="c21"></div></div></td>
+            <td><div class="v16"><div class="c21"></div></div></td>
+            <td><div class="v17"><div class="c21"></div></div></td>
+            <td><div class="v18"><div class="c21"></div></div></td>
+            <td><div class="v19"><div class="c21"></div></div></td>
+            <td><div class="v20"><div class="c21"></div></div></td>
+            <td><div class="v21"><div class="c21"></div></div></td>
+        </tr>
+        <tr id="row-c-22">
+            <td><span class="tipright"><span class="ipa">dʒ</span><span class="phonetic">j</span><span class="tip"><b>j</b>ump, bu<b>dg</b>et, a<b>g</b>e</span></span></td>
+            <td><div class="v1"><div class="c22"></div></div></td>
+            <td><div class="v2"><div class="c22"></div></div></td>
+            <td><div class="v3"><div class="c22"></div></div></td>
+            <td><div class="v4"><div class="c22"></div></div></td>
+            <td><div class="v5"><div class="c22"></div></div></td>
+            <td><div class="v6"><div class="c22"></div></div></td>
+            <td><div class="v7"><div class="c22"></div></div></td>
+            <td><div class="v8"><div class="c22"></div></div></td>
+            <td><div class="v9"><div class="c22"></div></div></td>
+            <td><div class="v10"><div class="c22"></div></div></td>
+            <td><div class="v11"><div class="c22"></div></div></td>
+            <td><div class="v12"><div class="c22"></div></div></td>
+            <td><div class="v13"><div class="c22"></div></div></td>
+            <td><div class="v14"><div class="c22"></div></div></td>
+            <td><div class="v15"><div class="c22"></div></div></td>
+            <td><div class="v16"><div class="c22"></div></div></td>
+            <td><div class="v17"><div class="c22"></div></div></td>
+            <td><div class="v18"><div class="c22"></div></div></td>
+            <td><div class="v19"><div class="c22"></div></div></td>
+            <td><div class="v20"><div class="c22"></div></div></td>
+            <td><div class="v21"><div class="c22"></div></div></td>
+        </tr>
+        <tr id="row-c-23">
+            <td><span class="tipright"><span class="ipa">θ</span><span class="phonetic">th</span><span class="tip"><b>th</b>irsty, no<b>th</b>ing, ma<b>th</b></span></span></td>
+            <td><div class="v1"><div class="c23"></div></div></td>
+            <td><div class="v2"><div class="c23"></div></div></td>
+            <td><div class="v3"><div class="c23"></div></div></td>
+            <td><div class="v4"><div class="c23"></div></div></td>
+            <td><div class="v5"><div class="c23"></div></div></td>
+            <td><div class="v6"><div class="c23"></div></div></td>
+            <td><div class="v7"><div class="c23"></div></div></td>
+            <td><div class="v8"><div class="c23"></div></div></td>
+            <td><div class="v9"><div class="c23"></div></div></td>
+            <td><div class="v10"><div class="c23"></div></div></td>
+            <td><div class="v11"><div class="c23"></div></div></td>
+            <td><div class="v12"><div class="c23"></div></div></td>
+            <td><div class="v13"><div class="c23"></div></div></td>
+            <td><div class="v14"><div class="c23"></div></div></td>
+            <td><div class="v15"><div class="c23"></div></div></td>
+            <td><div class="v16"><div class="c23"></div></div></td>
+            <td><div class="v17"><div class="c23"></div></div></td>
+            <td><div class="v18"><div class="c23"></div></div></td>
+            <td><div class="v19"><div class="c23"></div></div></td>
+            <td><div class="v20"><div class="c23"></div></div></td>
+            <td><div class="v21"><div class="c23"></div></div></td>
+        </tr>
+        <tr id="row-c-24">
+            <td><span class="tipright"><span class="ipa">ʰw</span><span class="phonetic">hw</span><span class="tip"><b>wh</b>ere, some<b>wh</b>at</span></span></td>
+            <td><div class="v1"><div class="c24"></div></div></td>
+            <td><div class="v2"><div class="c24"></div></div></td>
+            <td><div class="v3"><div class="c24"></div></div></td>
+            <td><div class="v4"><div class="c24"></div></div></td>
+            <td><div class="v5"><div class="c24"></div></div></td>
+            <td><div class="v6"><div class="c24"></div></div></td>
+            <td><div class="v7"><div class="c24"></div></div></td>
+            <td><div class="v8"><div class="c24"></div></div></td>
+            <td><div class="v9"><div class="c24"></div></div></td>
+            <td><div class="v10"><div class="c24"></div></div></td>
+            <td><div class="v11"><div class="c24"></div></div></td>
+            <td><div class="v12"><div class="c24"></div></div></td>
+            <td><div class="v13"><div class="c24"></div></div></td>
+            <td><div class="v14"><div class="c24"></div></div></td>
+            <td><div class="v15"><div class="c24"></div></div></td>
+            <td><div class="v16"><div class="c24"></div></div></td>
+            <td><div class="v17"><div class="c24"></div></div></td>
+            <td><div class="v18"><div class="c24"></div></div></td>
+            <td><div class="v19"><div class="c24"></div></div></td>
+            <td><div class="v20"><div class="c24"></div></div></td>
+            <td><div class="v21"><div class="c24"></div></div></td>
+        </tr>
+        <tr id="row-c-25">
+            <td><span class="tipright"><span class="ipa">ʒ</span><span class="phonetic">zh</span><span class="tip">mea<b>s</b>ure, televi<b>s</b>ion, bei<b>g</b>e</span></span></td>
+            <td><div class="v1"><div class="c25"></div></div></td>
+            <td><div class="v2"><div class="c25"></div></div></td>
+            <td><div class="v3"><div class="c25"></div></div></td>
+            <td><div class="v4"><div class="c25"></div></div></td>
+            <td><div class="v5"><div class="c25"></div></div></td>
+            <td><div class="v6"><div class="c25"></div></div></td>
+            <td><div class="v7"><div class="c25"></div></div></td>
+            <td><div class="v8"><div class="c25"></div></div></td>
+            <td><div class="v9"><div class="c25"></div></div></td>
+            <td><div class="v10"><div class="c25"></div></div></td>
+            <td><div class="v11"><div class="c25"></div></div></td>
+            <td><div class="v12"><div class="c25"></div></div></td>
+            <td><div class="v13"><div class="c25"></div></div></td>
+            <td><div class="v14"><div class="c25"></div></div></td>
+            <td><div class="v15"><div class="c25"></div></div></td>
+            <td><div class="v16"><div class="c25"></div></div></td>
+            <td><div class="v17"><div class="c25"></div></div></td>
+            <td><div class="v18"><div class="c25"></div></div></td>
+            <td><div class="v19"><div class="c25"></div></div></td>
+            <td><div class="v20"><div class="c25"></div></div></td>
+            <td><div class="v21"><div class="c25"></div></div></td>
+        </tr>
+        <tr id="row-c-26">
+            <td>- none -</td>
+            <td><div class="v1"><div class="c26"></div></div></td>
+            <td><div class="v2"><div class="c26"></div></div></td>
+            <td><div class="v3"><div class="c26"></div></div></td>
+            <td><div class="v4"><div class="c26"></div></div></td>
+            <td><div class="v5"><div class="c26"></div></div></td>
+            <td><div class="v6"><div class="c26"></div></div></td>
+            <td><div class="v7"><div class="c26"></div></div></td>
+            <td><div class="v8"><div class="c26"></div></div></td>
+            <td><div class="v9"><div class="c26"></div></div></td>
+            <td><div class="v10"><div class="c26"></div></div></td>
+            <td><div class="v11"><div class="c26"></div></div></td>
+            <td><div class="v12"><div class="c26"></div></div></td>
+            <td><div class="v13"><div class="c26"></div></div></td>
+            <td><div class="v14"><div class="c26"></div></div></td>
+            <td><div class="v15"><div class="c26"></div></div></td>
+            <td><div class="v16"><div class="c26"></div></div></td>
+            <td><div class="v17"><div class="c26"></div></div></td>
+            <td><div class="v18"><div class="c26"></div></div></td>
+            <td><div class="v19"><div class="c26"></div></div></td>
+            <td><div class="v20"><div class="c26"></div></div></td>
+            <td><div class="v21"><div class="c26"></div></div></td>
+        </tr>
+    </tbody>
+</table>
+
+</div>
+
+<footer>
+    <div class="footer-cont">Copyright &copy; 2021 Rock Bottom Media, Orr Siloni</div>
+</footer>
+
+</body>
+</html>
